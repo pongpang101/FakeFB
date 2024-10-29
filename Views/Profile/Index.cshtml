@@ -1,0 +1,93 @@
+﻿@model FakeFB.Models.UserProfile
+
+@{
+    ViewData["Title"] = "User Profile"; // Set the page title
+}
+
+<div class="container mt-5">
+    <!-- Cover Photo -->
+    <div class="cover-photo" style="background-image: url('@Model.CoverPhotoUrl'); height: 200px; background-size: cover; background-position: center;">
+        <div class="overlay" style="height: 100%; display: flex; align-items: flex-end; justify-content: center;">
+        </div>
+    </div>
+
+    <div class="row mt-3">
+        <div class="col-md-8">
+            <h1>@Model.Name's Profile</h1>
+            <p class="text-muted">@Model.Location</p>
+            <h4>About Me</h4>
+            <p>@Model.About</p>
+            <h4>Contact Information</h4>
+            <p><strong>Email:</strong> @Model.Email</p>
+            <a href="@Url.Action("Edit", "Profile", new { id = Model.Id })" class="btn btn-primary">Edit Profile</a>
+        </div>
+        <div class="col-md-4">
+            <h4>Friends</h4>
+            <ul class="list-unstyled">
+                <!-- Sample friends list -->
+                <li>Jane Smith</li>
+                <li>Bob Johnson</li>
+                <li>Alice Brown</li>
+                <li>Charlie Davis</li>
+                <li>Emma Wilson</li>
+            </ul>
+            <a href="#" class="btn btn-outline-secondary">See All Friends</a>
+        </div>
+    </div>
+
+    <hr />
+
+    <!-- Posts Section -->
+    <h4>Posts</h4>
+    <div class="post">
+        <div class="post-header">
+            <strong>@Model.Name</strong> <span class="text-muted">5 minutes ago</span>
+        </div>
+        <div class="post-content">
+            <p>This is a sample post content. It's great to be here!</p>
+            <img src="~/images/car1.jpg" class="img-fluid" alt="Sample Post Image" />
+        </div>
+        <div class="post-footer">
+            <button class="btn btn-light"><i class="bi bi-hand-thumbs-up"></i> Like</button>
+            <button class="btn btn-light"><i class="bi bi-chat-dots"></i> Comment</button>
+        </div>
+    </div>
+    <!-- More posts can be added here -->
+</div>
+
+<style>
+    .cover-photo {
+        position: relative;
+        margin-bottom: 20px;
+        color: white;
+    }
+
+    .overlay {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        background: rgba(0, 0, 0, 0.5);
+    }
+
+    .profile-pic {
+        margin-bottom: -75px; /* To overlap with the cover photo */
+        border: 5px solid white; /* Border for the profile picture */
+    }
+
+    .post {
+        border: 1px solid #e0e0e0;
+        padding: 15px;
+        margin-bottom: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+    }
+
+    .post-header {
+        font-weight: bold;
+    }
+
+    .post-footer {
+        margin-top: 10px;
+    }
+</style>

@@ -1,0 +1,7 @@
+﻿@model MarketplaceItem
+
+<h2>@Model.Title</h2>
+<img src="@Model.ImageUrl" alt="@Model.Title" />
+<p>@Model.Description</p>
+<p>Price: @Model.Price.ToString("C")</p>
+<small>Seller: @Model.SellerName</small>

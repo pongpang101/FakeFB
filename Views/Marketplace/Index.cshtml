@@ -1,0 +1,139 @@
+﻿@model IEnumerable<MarketplaceItem>
+
+<div style="display: flex; flex-direction: row; height: 100vh; font-family: Arial, sans-serif;">
+    <!-- Sidebar -->
+    <aside style="width: 250px; background-color: #f2f2f2; padding: 20px;">
+        <div style="display: flex; align-items: center; margin-bottom: 20px;">
+            <h2 style="margin-top: 40px; font-size: 1.5em;">Marketplace</h2>
+            <span style="margin-left: auto; font-size: 1.5em; margin-top:25px;">⚙️</span>
+        </div>
+        <div style="margin-bottom: 10px; margin-top:10px;">
+            <input type="text" placeholder="Search" style="width: 100%; padding: 8px; border-radius: 5px; border: 1px solid #ccc;" />
+        </div>
+        <nav>
+            <button style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: #e4e6eb; color: black; border: none; border-radius: 5px; text-align: left;">
+                Browse all
+            </button>
+            <button style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: #e4e6eb; color: black; border: none; border-radius: 5px; text-align: left;">
+                Notification
+            </button>
+            <button style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: #e4e6eb; color: black; border: none; border-radius: 5px; text-align: left;">
+                Inbox
+            </button>
+            <button style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: #e4e6eb; color: black; border: none; border-radius: 5px; text-align: left;">
+                Buying
+            </button>
+            <button style="width: 100%; padding: 10px; margin-bottom: 10px; background-color: #e4e6eb; color: black; border: none; border-radius: 5px; text-align: left;">
+                Selling
+            </button>
+            <!-- Create New Listing Button with a distinct color -->
+            <button style="width: 100%; padding: 10px; background-color: #006aff; color: white; border: none; border-radius: 5px; margin-top: 10px;">
+                + Create new listing
+            </button>
+        </nav>
+
+        <div style="margin-top: 20px;">
+            <p><strong>Location</strong></p>
+            <p>Bangkok, Thailand</p>
+            <p><strong>Categories</strong></p>
+            <!-- Add categories as needed -->
+        </div>
+    </aside>
+
+    <!-- Main Content -->
+    <main style="flex-grow: 1; padding: 20px; margin-top: 40px;">
+        <h2>Today's Picks</h2>
+        <div style="display: flex; flex-wrap: wrap; gap: 20px;">
+            <!-- Use Flexbox for layout -->
+            <!-- Default Items -->
+            <div class="item" style="flex: 1 1 250px; max-width: 350px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);" onclick="openModal('car1')">
+                <img src="~/images/car1.jpg" alt="Nissan 350Z" style="width: 100%; height: 75%; object-fit: cover;"/>
+                <div style="padding: 20px;">
+                    <p style="font-size: 1.1em; font-weight: bold; margin: 0;">860,000 Baht</p>
+                    <p style="margin: 5px 0; color: gray;">Nissan 350Z</p>
+                    <p style="margin: 0; font-size: 0.9em; color: gray;">Bangkok, Thailand</p>
+                </div>
+            </div>
+
+            <div class="item" style="flex: 1 1 250px; max-width: 350px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);" onclick="openModal('car2')">
+                <img src="~/images/car2.jpg" alt="Subaru GDB" style="width: 100%; height: 75%; object-fit: cover;" />
+                <div style="padding: 20px;">
+                    <p style="font-size: 1.1em; font-weight: bold; margin: 0;">1,790,000 Baht</p>
+                    <p style="margin: 5px 0; color: gray;">Subaru GDB</p>
+                    <p style="margin: 0; font-size: 0.9em; color: gray;">Bangkok, Thailand</p>
+                </div>
+            </div>
+
+            <div class="item" style="flex: 1 1 250px; max-width: 350px; border: 1px solid #ccc; border-radius: 8px; overflow: hidden; box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);" onclick="openModal('car3')">
+                <img src="~/images/car3.jpg" alt="Mitsubishi Lancer" style="width: 100%; height: 75%; object-fit: cover;" />
+                <div style="padding: 20px;">
+                    <p style="font-size: 1.1em; font-weight: bold; margin: 0;">699,000 Baht</p>
+                    <p style="margin: 5px 0; color: gray;">Mitsubishi Lancer</p>
+                    <p style="margin: 0; font-size: 0.9em; color: gray;">Bangkok, Thailand</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Modal -->
+        <div id="carModal" style="display: none; position: fixed; z-index: 1000; left: 0; top: 0; width: 100%; height: 100%; background-color: rgba(0,0,0,0.7); justify-content: center; align-items: center;">
+            <div style="background-color: white; padding: 20px; border-radius: 8px; width: 400px; text-align: center; position: relative;">
+                <!-- Close button positioned correctly -->
+                <span style="cursor: pointer; position: absolute; top: 10px; right: 20px; font-size: 1.5em; color: gray;" onclick="closeModal()">✖️</span>
+                <h3 id="modalTitle"></h3>
+                <img id="modalImage" src="" alt="" style="width: 100%; height: auto; border-radius: 8px; margin-bottom: 10px;">
+                <p id="modalPrice"></p>
+                <p id="modalLocation"></p>
+                <p id="modalDescription"></p>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        // Car data
+        const cars = {
+            car1: {
+                title: 'Nissan 350Z',
+                price: '860,000 Baht',
+                location: 'Bangkok, Thailand',
+                description: 'A sporty coupe with a powerful engine and sleek design.',
+                image: '~/images/car1.jpg'
+            },
+            car2: {
+                title: 'Subaru GDB',
+                price: '1,790,000 Baht',
+                location: 'Bangkok, Thailand',
+                description: 'An all-wheel drive car with excellent handling.',
+                image: '~/images/car2.jpg'
+            },
+            car3: {
+                title: 'Mitsubishi Lancer',
+                price: '699,000 Baht',
+                location: 'Bangkok, Thailand',
+                description: 'A reliable sedan with a sporty edge.',
+                image: '~/images/car3.jpg'
+            }
+        };
+
+        function openModal(carKey) {
+            const modal = document.getElementById('carModal');
+            const title = document.getElementById('modalTitle');
+            const price = document.getElementById('modalPrice');
+            const location = document.getElementById('modalLocation');
+            const description = document.getElementById('modalDescription');
+            const image = document.getElementById('modalImage');
+
+            title.textContent = cars[carKey].title;
+            price.textContent = cars[carKey].price;
+            location.textContent = cars[carKey].location;
+            description.textContent = cars[carKey].description;
+            image.src = cars[carKey].image;
+
+            modal.style.display = 'flex'; // Show modal
+        }
+
+        function closeModal() {
+            const modal = document.getElementById('carModal');
+            modal.style.display = 'none'; // Hide the modal
+        }
+    </script>
+</div>

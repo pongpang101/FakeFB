@@ -1,0 +1,22 @@
+﻿@model List<FakeFB.Models.FriendViewModel>
+
+@{
+    ViewData["Title"] = "Friends";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-md-3">
+            <div class="list-group">
+                <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action">Home</a>
+                <a asp-controller="Friends" asp-action="FriendRequests" class="list-group-item list-group-item-action">Friend Requests</a>
+                <a asp-controller="Friends" asp-action="Suggestions" class="list-group-item list-group-item-action">Suggestions</a>
+                <a asp-controller="Friends" asp-action="AllFriends" class="list-group-item list-group-item-action">All Friends</a>
+                <a asp-controller="Friends" asp-action="Birthdays" class="list-group-item list-group-item-action">Birthdays</a>
+                <a asp-controller="Friends" asp-action="CustomLists" class="list-group-item list-group-item-action">Custom Lists</a>
+            </div>
+        </div>
+    </div>
+</div>
+

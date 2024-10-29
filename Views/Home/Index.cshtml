@@ -1,0 +1,125 @@
+﻿@model IEnumerable<FakeFB.Models.Post>
+
+@{
+    ViewData["Title"] = "Home";
+}
+
+<style>
+    body {
+        background-color: #f0f2f5;
+        color: black; /* Set default font color to black */
+    }
+
+    /* Navbar Styling */
+    .navbar {
+        background-color: #4267B2;
+    }
+
+        .navbar .navbar-brand,
+        .navbar .nav-link,
+        .navbar .form-inline .search-input {
+            color: white !important; /* Keep navbar text white for contrast */
+        }
+
+        .navbar .form-inline .search-input {
+            width: 250px;
+            border-radius: 15px;
+        }
+
+    /* Sidebar link styling */
+    .list-group-item a {
+        color: black !important; /* Set sidebar links to black */
+    }
+
+    /* Main Sidebar and Content Styling */
+    .post-card {
+        background-color: #ffffff;
+        border-radius: 8px;
+        box-shadow: 0px 1px 5px rgba(0, 0, 0, 0.1);
+    }
+
+    .card-title,
+    .card-text {
+        color: black; /* Set card title and text color to black */
+    }
+</style>
+
+<!-- Main Content Section -->
+<div class="container-fluid mt-5 pt-4">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-sm-12 col-md-3">
+            <ul class="list-group">
+                <li class="list-group-item">
+                    <a href="/Profile" class="nav-link"><i class="fas fa-user-circle"></i> Profile</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Friends" class="nav-link"><i class="fas fa-user-friends"></i> Friends</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Memories" class="nav-link"><i class="fas fa-clock"></i> Memories</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Saved" class="nav-link"><i class="fas fa-bookmark"></i> Saved</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Groups" class="nav-link"><i class="fas fa-users"></i> Groups</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Videos" class="nav-link"><i class="fas fa-video"></i> Videos</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Marketplace" class="nav-link"><i class="fas fa-store"></i> Marketplace</a>
+                </li>
+                <li class="list-group-item">
+                    <a href="/Feeds" class="nav-link"><i class="fas fa-rss"></i> Feeds</a>
+                </li>
+            </ul>
+        </div>
+
+        <!-- Main Content Area -->
+        <div class="col-sm-12 col-md-6">
+            <div class="card mb-4 post-card">
+                <div class="card-body">
+                    <form asp-action="Create" method="post" enctype="multipart/form-data" id="postForm">
+                        <div class="form-group">
+                            <textarea name="Content" class="form-control" rows="3" placeholder="What's on your mind?" required></textarea>
+                        </div>
+                        <div class="mt-2 mb-2">
+                            <button type="button" class="btn btn-light">
+                                <i class="fas fa-video"></i> Live video
+                            </button>
+                            <button type="button" class="btn btn-light">
+                                <i class="fas fa-image"></i> Photo/video
+                            </button>
+                            <div class="dropdown d-inline-block">
+                                <button class="btn btn-light dropdown-toggle" type="button" id="feelingDropdown" data-bs-toggle="dropdown" aria-expanded="false">
+                                    <i class="fas fa-smile"></i> Feeling/activity
+                                </button>
+                                <ul class="dropdown-menu" aria-labelledby="feelingDropdown">
+                                    <li><a class="dropdown-item" href="#">Feeling happy</a></li>
+                                    <li><a class="dropdown-item" href="#">Feeling sad</a></li>
+                                    <li><a class="dropdown-item" href="#">Feeling excited</a></li>
+                                    <li><a class="dropdown-item" href="#">Feeling anxious</a></li>
+                                </ul>
+                            </div>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Post</button>
+                    </form>
+                </div>
+            </div>
+
+           
+
+        </div>
+
+        <!-- Right Sidebar (Optional) -->
+        <div class="col-sm-12 col-md-3">
+            <h3>Your Pages and profiles</h3>
+            <hr />
+            <h3>Birthdays</h3>
+            <hr />
+            <h3>Contacts</h3>
+        </div>
+    </div>
+</div>

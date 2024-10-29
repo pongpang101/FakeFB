@@ -1,0 +1,65 @@
+﻿@model List<FakeFB.Models.FriendViewModel>
+
+@{
+    ViewData["Title"] = "Friend Requests";
+}
+
+<div class="container mt-5">
+    <div class="row">
+        <!-- Left Sidebar -->
+        <div class="col-md-3">
+            <h2 class="text-left">Friends</h2>
+            <div class="list-group">
+                <a asp-controller="Home" asp-action="Index" class="list-group-item list-group-item-action">Home</a>
+                <a asp-controller="Friends" asp-action="FriendRequests" class="list-group-item list-group-item-action ">Friend Requests</a>
+                <a asp-controller="Friends" asp-action="Suggestions" class="list-group-item list-group-item-action">Suggestions</a>
+                <a asp-controller="Friends" asp-action="AllFriends" class="list-group-item list-group-item-action">All Friends</a>
+                <a asp-controller="Friends" asp-action="Birthdays" class="list-group-item list-group-item-action">Birthdays</a>
+                <a asp-controller="Friends" asp-action="CustomLists" class="list-group-item list-group-item-action">Custom Lists</a>
+            </div>
+        </div>
+
+        <!-- Main Content: Friend Requests -->
+        <div class="col-md-6">
+            <h3 class="text-left">Friend Requests</h3>
+
+            <!-- Display each friend request -->
+            <div class="row">
+                @if (Model.Any())
+                {
+                    foreach (var friend in Model)
+                    {
+                        <div class="col-md-4 mb-3">
+                            <div class="card shadow">
+                                <div class="card-body">
+                                    <div class="d-flex align-items-center">
+                                        <img src="~/images/profile.png" alt="User Icon" class="rounded-circle" style="width: 50px; height: 50px; margin-right: 10px;" />
+                                        <h5 class="card-title">@friend.FirstName @friend.LastName</h5>
+                                    </div>
+                                    <p class="card-text">Email: @friend.Email</p>
+                                    <div class="d-flex justify-content-between">
+                                        <form asp-action="AcceptFriendRequest" asp-route-id="@friend.Id" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-success">Accept</button>
+                                        </form>
+                                        <form asp-action="DeclineFriendRequest" asp-route-id="@friend.Id" method="post" style="display:inline;">
+                                            <button type="submit" class="btn btn-danger">Decline</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="alert alert-warning text-center">No friend requests found.</div>
+                }
+            </div>
+            <hr/><h3 class="text-left">People you may know</h3>
+        </div>
+
+        <!-- Right Sidebar -->
+       
+    </div>
+</div>
+
